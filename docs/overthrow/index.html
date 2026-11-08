@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>打开作品页 | 雷洋 Rex</title>
+  <script>
+    const target = new URL(window.location.href);
+    target.pathname = target.pathname.replace(/\/(?:index\.html)?$/, "") + ".html";
+    window.location.replace(target.href);
+  </script>
+</head>
+<body><a href="../overthrow.html">打开作品页</a></body>
+</html>
