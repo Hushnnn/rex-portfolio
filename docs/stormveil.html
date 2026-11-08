@@ -1,0 +1,148 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101312"><meta name="description" content="雷洋 Rex 的史东薇尔城关卡白盒、演示视频与路径图。沿人物路线观察奖励、灯光、电梯和门。"><title>史东薇尔城 · 白盒拆解 | 雷洋 REX</title><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="stormveil.css"></head><body id="top"><a class="skip" href="#main">跳转至内容</a><header class="nav"><a class="brand" href="index.html" aria-label="雷洋 Rex 首页">R<span class="brand-cross">+</span><span class="brand-text">REX / 雷洋<small>LEVEL & GAME DESIGN</small></span></a><nav aria-label="主导航"><a href="index.html#work">作品 <small>01</small></a><a href="index.html#about">关于 <small>02</small></a><a href="index.html#games">游戏经历 <small>03</small></a><a href="index.html#contact">联系 ↗</a></nav></header>
+
+
+
+<main id="main" class="storm-study">
+  <a class="sv-back" href="index.html#work">← 返回作品集</a>
+  <div class="sv-hero" id="overview">
+    <div>
+      <span class="project-kind">白盒拆解</span>
+      <h1>STORMVEIL<span>史东薇尔城</span></h1>
+      <p>这座白盒花了我约 60 小时。我把敌人、拾取物、灯光和机关放回各自的位置，再沿着路径图走一遍。这里记下了几处让我绕路和折返的地方。</p>
+      <a class="sv-watch" href="https://www.bilibili.com/video/BV1zHWE65E4u/" target="_blank" rel="noopener">在 B 站看我的白盒演示 <span aria-hidden="true">↗</span></a>
+    </div>
+    <div>
+      <a class="sv-film" href="https://www.bilibili.com/video/BV1zHWE65E4u/" target="_blank" rel="noopener" aria-label="在 B 站打开史东薇尔城白盒演示（新标签页）">
+        <img src="assets/storm-citadel.webp" width="1920" height="1080" alt="白盒演示中的城堡全景，能看到城墙、塔楼和屋顶之间的高度差" fetchpriority="high">
+        <span aria-hidden="true">▶</span>
+      </a>
+      <div class="sv-film-credit">白盒演示 · 总览与片段 05:22 ｜ 全程录像 25:32</div>
+    </div>
+  </div>
+  <div class="sv-layout">
+    <aside class="sv-nav" aria-label="史东薇尔城拆解章节">
+      <a href="#routes">路线引导</a>
+      <a href="#lighting">灯光布置</a>
+      <a href="#rewards">奖励布置</a>
+      <a href="#shortcuts">电梯与开门</a>
+      <a href="#plans">路径图与白盒总览</a>
+    </aside>
+    <div class="sv-article" id="design">
+      <section id="routes">
+        <h2>路线引导 · 从城门到仓库</h2>
+        <p>我画流程图时，从葛托克的小房间拉出了两条线。穿正门会进入瓮城。走沿墙小路，则要经过山坡和城墙外栈道，最后从侧面钻进仓库。俯视时，两条线都指向城内，但站在人物的高度看，外墙挡住了后面的路，沿途能读到的是下一个落脚处。</p>
+        <ol class="sv-trail" aria-label="侧门路线">
+          <li>葛托克的小房间</li><li>沿墙小路</li><li>城外山地</li><li>城墙外栈道</li><li>仓库</li>
+        </ol>
+        <p>仓库里的转折更有意思。二层的楼梯间上了锁，要先穿过狭窄通路，在三层小黑屋取得钥匙，再折回二层开门上四层。第一次路过时，一扇打不开的门留下了记忆。拿到钥匙的那一刻，回头就有了具体的去处。</p>
+        
+        <figure class="sv-shot">
+          <button class="zoom" data-image="assets/storm-rampart.webp" data-caption="沿高处的窄墙转过拐角，下层通路和敌人的位置才一起进入视野。" aria-label="放大查看：沿高处的窄墙转过拐角，下层通路和敌人的位置才一起进入视野。">
+            <img src="assets/storm-rampart.webp" width="2560" height="1440" alt="沿高处的窄墙转过拐角，下层通路和敌人的位置才一起进入视野。" loading="lazy">
+            <span class="zoom-hint">放大原图 ↗</span>
+          </button>
+          <figcaption><a class="sv-time" href="https://www.bilibili.com/video/BV1zHWE65E4u/?p=1&amp;t=152" target="_blank" rel="noopener" aria-label="在 B 站从剪辑版 02:32 开始观看">剪辑版 02:32 ↗</a> 沿高处的窄墙转过拐角，下层通路和敌人的位置才一起进入视野。</figcaption>
+        </figure>
+      </section>
+      <section id="lighting">
+        <h2>灯光布置 · 先让人看见门</h2>
+        <p>这段白盒里，我从灰暗的房间朝门走。门板和墙面颜色接近，先吸引视线的是门旁壁灯照出的一小片暖色。走近才看清门框，并读到需要钥匙的提示。回看录像，把镜头停在人物还没靠近的位置，也能认出要去试的那扇门。</p>
+        
+        <figure class="sv-shot">
+          <button class="zoom" data-image="assets/storm-torch-lock.webp" data-caption="壁灯在门框右侧。靠近后，界面提示“需要钥匙才能打开”。" aria-label="放大查看：壁灯在门框右侧。靠近后，界面提示“需要钥匙才能打开”。">
+            <img src="assets/storm-torch-lock.webp" width="2560" height="1440" alt="壁灯在门框右侧。靠近后，界面提示“需要钥匙才能打开”。" loading="lazy">
+            <span class="zoom-hint">放大原图 ↗</span>
+          </button>
+          <figcaption><a class="sv-time" href="https://www.bilibili.com/video/BV1zHWE65E4u/?p=1&amp;t=86" target="_blank" rel="noopener" aria-label="在 B 站从剪辑版 01:26 开始观看">剪辑版 01:26 ↗</a> 壁灯在门框右侧。靠近后，界面提示“需要钥匙才能打开”。</figcaption>
+        </figure>
+        <p>我把这段分成远、近两次判断。远处靠墙面的明暗差找到入口，近处靠提示确认入口的状态。若把整面墙照得一样亮，门框就要和墙一同被搜索。这里最值得保留的是那一小块照亮门边的范围，以及旁边仍然暗着的走廊。</p>
+      </section>
+      <section id="rewards">
+        <h2>奖励布置 · 屋顶的护符，大厅的宝箱</h2>
+        <p>沿流程图找奖励时，我记了两处。屋顶支线把回报放在爬升的尽头，大厅支线则先把奖励和守卫放在同一次判断里。</p>
+        <div class="sv-route-notes">
+          <div>
+            <h3>壁炉小屋上方</h3>
+            <p>屋顶有一根斜向上的残柱，接到另一片可行走的屋面。沿柱上行、越过守兵，最高的平台才是护符所在。残柱的坡度先给出一个可以试走的方向，护符则兑现了这次绕行。</p>
+          </div>
+          <div>
+            <h3>接肢大厅二层</h3>
+            <p>我的图上，厨房二层露台接出两条路。一边是单向门，另一边通往标有高亮宝箱和一名守卫的大厅二层。看见宝箱后，还得决定怎么绕过去、何时接近守卫。奖励的位置也就影响了进场路线。</p>
+          </div>
+        </div>
+        
+        <figure class="sv-shot">
+          <button class="zoom" data-image="assets/storm-key-pickup.webp" data-caption="白盒演示里的石剑钥匙。白色拾取物和暗墙拉开明暗差，靠近后出现“按 E 拾取”。" aria-label="放大查看：白盒演示里的石剑钥匙。白色拾取物和暗墙拉开明暗差，靠近后出现“按 E 拾取”。">
+            <img src="assets/storm-key-pickup.webp" width="2560" height="1440" alt="白盒演示里的石剑钥匙。白色拾取物和暗墙拉开明暗差，靠近后出现“按 E 拾取”。" loading="lazy">
+            <span class="zoom-hint">放大原图 ↗</span>
+          </button>
+          <figcaption><a class="sv-time" href="https://www.bilibili.com/video/BV1zHWE65E4u/?p=1&amp;t=171" target="_blank" rel="noopener" aria-label="在 B 站从剪辑版 02:51 开始观看">剪辑版 02:51 ↗</a> 白盒演示里的石剑钥匙。白色拾取物和暗墙拉开明暗差，靠近后出现“按 E 拾取”。</figcaption>
+        </figure>
+      </section>
+      <section id="shortcuts">
+        <h2>电梯与开门 · 第二次经过同一处</h2>
+        <h3>升降梯把上下层接回一起</h3>
+        <p>沿城墙外侧向下探索，途中会经过粪金龟和熔炉骑士，走到交通核底部才解锁电梯。在流程图里，这一段最后指回交通核二层。走过高低差、拐角和战斗之后，再从熟悉的楼层出来，刚才绕过的空间才容易对上。下次从赐福出发，这条支线的入口也换了一个位置。</p>
+        <div class="sv-pair">
+        <figure class="sv-shot">
+          <button class="zoom" data-image="assets/storm-lift-up.webp" data-caption="乘台上行后抵达交通核。左侧斜梯和前方明亮的通道就在这一层。" aria-label="放大查看：乘台上行后抵达交通核。左侧斜梯和前方明亮的通道就在这一层。">
+            <img src="assets/storm-lift-up.webp" width="2560" height="1440" alt="乘台上行后抵达交通核。左侧斜梯和前方明亮的通道就在这一层。" loading="lazy">
+            <span class="zoom-hint">放大原图 ↗</span>
+          </button>
+          <figcaption><a class="sv-time" href="https://www.bilibili.com/video/BV1zHWE65E4u/?p=2&amp;t=416" target="_blank" rel="noopener" aria-label="在 B 站从全程录像 06:56 开始观看">全程录像 06:56 ↗</a> 乘台上行后抵达交通核。左侧斜梯和前方明亮的通道就在这一层。</figcaption>
+        </figure>
+        <figure class="sv-shot">
+          <button class="zoom" data-image="assets/storm-lift-down.webp" data-caption="拉杆召回平台。人在门外等候，空台从上方降下，停稳后就能进入。" aria-label="放大查看：拉杆召回平台。人在门外等候，空台从上方降下，停稳后就能进入。">
+            <img src="assets/storm-lift-down.webp" width="2560" height="1440" alt="拉杆召回平台。人在门外等候，空台从上方降下，停稳后就能进入。" loading="lazy">
+            <span class="zoom-hint">放大原图 ↗</span>
+          </button>
+          <figcaption><a class="sv-time" href="https://www.bilibili.com/video/BV1zHWE65E4u/?p=2&amp;t=1229" target="_blank" rel="noopener" aria-label="在 B 站从全程录像 20:29 开始观看">全程录像 20:29 ↗</a> 拉杆召回平台。人在门外等候，空台从上方降下，停稳后就能进入。</figcaption>
+        </figure></div>
+        <h3>靠近、按 E，再穿过门洞</h3>
+        <p>下面是演示里的连续两帧。第一帧留住了靠近门时的 E 提示，第二帧能看见原先被门板挡住的通路。在流程图上，厨房二层的单向门和下水道入口附近的单向门都有方向。对白盒来说，能从哪一侧触发、推开后接回哪一段路，和门洞本身的位置同样重要。</p>
+        <div class="sv-pair">
+        <figure class="sv-shot">
+          <button class="zoom" data-image="assets/storm-door-prompt.webp" data-caption="门板仍然挡着通路，靠近后出现“按 E 互动”。" aria-label="放大查看：门板仍然挡着通路，靠近后出现“按 E 互动”。">
+            <img src="assets/storm-door-prompt.webp" width="2560" height="1440" alt="门板仍然挡着通路，靠近后出现“按 E 互动”。" loading="lazy">
+            <span class="zoom-hint">放大原图 ↗</span>
+          </button>
+          <figcaption><a class="sv-time" href="https://www.bilibili.com/video/BV1zHWE65E4u/?p=1&amp;t=163" target="_blank" rel="noopener" aria-label="在 B 站从剪辑版 02:43 开始观看">剪辑版 02:43 ↗</a> 门板仍然挡着通路，靠近后出现“按 E 互动”。</figcaption>
+        </figure>
+        <figure class="sv-shot">
+          <button class="zoom" data-image="assets/storm-door-open.webp" data-caption="门洞敞开，角色跨过门槛，门后的敌人进入视野。" aria-label="放大查看：门洞敞开，角色跨过门槛，门后的敌人进入视野。">
+            <img src="assets/storm-door-open.webp" width="2560" height="1440" alt="门洞敞开，角色跨过门槛，门后的敌人进入视野。" loading="lazy">
+            <span class="zoom-hint">放大原图 ↗</span>
+          </button>
+          <figcaption><a class="sv-time" href="https://www.bilibili.com/video/BV1zHWE65E4u/?p=1&amp;t=164" target="_blank" rel="noopener" aria-label="在 B 站从剪辑版 02:44 开始观看">剪辑版 02:44 ↗</a> 门洞敞开，角色跨过门槛，门后的敌人进入视野。</figcaption>
+        </figure></div>
+      </section>
+      <section id="plans">
+        <h2>路径图与白盒总览</h2>
+        <p>这张图保留了主路之外的屋顶、露台、下落点和捷径。可以沿其中一条线追踪，也可以对照白盒总览，看平面上挨着的两个房间是否真的在同一层。</p>
+        <button class="sv-map" id="gallery" data-image="assets/stormveil-flow.png" data-caption="史东薇尔城完整路径流程图" aria-label="放大查看史东薇尔城完整路径流程图">
+          <img src="assets/stormveil-flow.webp" alt="" loading="lazy">
+          <span><strong>完整路径流程图</strong><small>放大或打开原图查看节点与连线</small></span>
+          <span aria-hidden="true">↗</span>
+        </button>
+        <div class="sv-pair">
+        <figure class="sv-shot">
+          <button class="zoom" data-image="assets/stormveil-overview.webp" data-caption="平面参考与引擎内白盒总览。" aria-label="放大查看：平面参考与引擎内白盒总览。">
+            <img src="assets/stormveil-overview.webp" width="1900" height="1033" alt="平面参考与引擎内白盒总览。" loading="lazy">
+            <span class="zoom-hint">放大原图 ↗</span>
+          </button>
+          <figcaption>平面参考与引擎内白盒总览。</figcaption>
+        </figure>
+        <figure class="sv-shot">
+          <button class="zoom" data-image="assets/stormveil-side.webp" data-caption="从另一侧核对城墙、塔楼与屋顶的高低关系。" aria-label="放大查看：从另一侧核对城墙、塔楼与屋顶的高低关系。">
+            <img src="assets/stormveil-side.webp" width="1900" height="1033" alt="从另一侧核对城墙、塔楼与屋顶的高低关系。" loading="lazy">
+            <span class="zoom-hint">放大原图 ↗</span>
+          </button>
+          <figcaption>从另一侧核对城墙、塔楼与屋顶的高低关系。</figcaption>
+        </figure></div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<a class="next-project" href="forest.html"><span class="micro">NEXT PROJECT / 下一个作品 · 实验demo</span><strong>FOREST/PATHS</strong><span>↗</span></a>
+<footer><span>© 2026 雷洋 / REX</span><span>LEVEL DESIGN · GAME DESIGN · PERSONAL WORK</span><a href="#top">返回顶部 ↑</a></footer><dialog id="lightbox" aria-label="图片放大查看"><div class="lightbox-bar"><span id="imageCaption"></span><a id="originalImage" target="_blank" rel="noopener">打开原图 ↗</a><button id="closeImage" aria-label="关闭图片">关闭 ×</button></div><div class="lightbox-scroll"><img id="largeImage" alt=""></div></dialog><div class="toast" role="status" aria-live="polite" id="toast"></div><script src="app.js"></script></body></html>
