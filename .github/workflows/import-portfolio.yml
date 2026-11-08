@@ -1,0 +1,135 @@
+name: Import verified portfolio media
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/import-portfolio.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Copy original portfolio media and verify Git blob hashes
+        shell: python
+        run: |
+          from concurrent.futures import ThreadPoolExecutor
+          from hashlib import sha1
+          from pathlib import Path
+          from time import sleep
+          from urllib.request import Request, urlopen
+
+          source = 'https://personal-folio-oct26-vista.sakuranyume1670.chatgpt.site/assets/'
+          manifest = dict(line.split() for line in """
+          ability-analysis.docx 56e2068f8bb5564bd088d13c4255b285918ab142
+          blackglow-balconies.jpg 88b17f55953c1e7a5bcc51fae20d7634d88589f0
+          blackglow-courtyard.jpg 951d4f90a8bd59432e1e202241aaf18c20543321
+          blackglow-night-cover.png 7c627172fdda0dbfae0b02e37553a8e4d2e71335
+          blackglow-night.mp4 6b5f0719fff49d1cce9e10d8566ac110e4233087
+          blackglow-traversal.jpg 06938986568c31992811a903f919ab6c89cc54c4
+          dusk-analysis-0926-1100.mp4 6c810452be2382049606ac811c3605cfd651ec87
+          dusk-cover.jpg b06acbe388faaab64675e98ed39d3ac16238baf2
+          dusk-map.png e819140eeabec96735577415a63974eeee45535c
+          dusk-negative-space.png a60667d158e171ca7e19d6e180d43c78d19b9ec9
+          dusk-positive-space.png cd301f249ef443549c5f30720844f053c4f929b0
+          dusk-pressure.png d1fefa910bcdb29792c0bcfaa2ba873131935df4
+          dusk-resource.webp a147feb84a5002b828823d291d802f081140e88a
+          dusk-resources-map.png 171f080475540c8b508b20a109704817ec1dc491
+          dusk-ritual-map.png 66ca88380bff793aeaf0272924eae7c8306f62ed
+          dusk-ritual.webp 3b705dffbc9c68bacadb85421a765344d12f6449
+          dusk-stages.png 194e6573c0ed4203c685be4a78ce9cbc9b447243
+          forest-choice.webp 7567b0bf54350e09790d591f449ab850b6de2004
+          forest-cover.webp 579436f148e33befc4917b5c95ab88df2db6eca4
+          forest-design.docx 38199b15427c7857a3bf97ffc3f2dbc6381ed646
+          forest-first.webp a1c390a956288ed58800798435e8a810d61ec903
+          forest-flow.webp 0810de907d23e3ec4e854b198b910fb9ef3f1aba
+          forest-frame-0.webp dc9ec51855e22b1fe3d2846bf0a92784f200f9f8
+          forest-frame-1.webp 29ce2c5f825e44bb8c8f84abbc9b43db02a01018
+          forest-frame-2.webp e43117b05901fc056968b23fb8520f370ae76f35
+          forest-frame-3.webp ec55c28e6f99cf3e2618fbf1301a8b9063a7e7e8
+          forest-map.webp a9c26f29a619aa0c09f20e99aa9770f1177cf850
+          forest-plan.webp b750b08289673a85ff31207650476519e840ef6d
+          forest-view.webp b50d39c42514c2748ca030a3cbfef0b0e29ccf74
+          forest.mp4 0683f93cb16d3cdec01e603d8a2fdb7bb0bc1a46
+          game-apex.jpg 463fcba18a9136c340c73956f4192baf3364ff51
+          game-dark-souls-3.jpg a7685ed452268806d1457dbb2acde479e7c64cfe
+          game-dark-souls.jpg 8cae91e2c85bdd3c1414ebbec7ac9369b83e0c60
+          game-dishonored-2.jpg 467d4ed42994dad4f28f1cc85c0d52c0f3265636
+          game-elden-ring.jpg 26a12059d9a22ae5d1ccb78170e17960ac1d8f10
+          game-endfield.jpg 0924f22dfd9de695e8373ec50c34d86b014ed50a
+          game-ff14.jpg c77c6658ac09a0c7a9c683280562ceae635c2ad0
+          game-metroid.jpg 25ed0b534c32a2a5ef688cff686ab93d1b25e3e3
+          game-nightreign.jpg 916245a5e4b7d50968bcd1a46f8b590bd50ec64b
+          game-phantom-blade-zero.jpg b9e762aae182a3a035d8fd8bc0ff93bbba6592c1
+          game-sekiro.jpg aacb53dd5ec2ec7775e831e5bcd6a19486f3fd2f
+          game-wuchang.jpg b53407f8b482cb4c46e25220efd5236349dc2c68
+          game-wuthering-waves.jpg c65dc529f5506ac08a2f80c36aff654a52a7a6e3
+          game-zelda-totk.jpg b876d70cf90f6c2d1aaefa1f4f10f0a138808a3c
+          overthrow-base.webp aed3d6be34a733c6d25904211a8d3b288504b6c6
+          overthrow-boss.webp 9d1e6cc3a564898ed2f8ffd86a45469fbef4b498
+          overthrow-city.webp bd7add36a7a6eebb3f7b28810f08fadf0086a447
+          overthrow-cover.webp 6be1bcdc2ecc0fb7e66a811450b370435526cdd5
+          overthrow-forest.webp 1544e9618e9ab9abd7960cb5591a6d6d50348de5
+          overthrow-frame-0.webp c5e154ee0c49125b99ef9707dd5ecb6e5d669149
+          overthrow-frame-1.webp af2ced5c58c9624a3bc1ed1dbad89594df4c7746
+          overthrow-frame-2.webp f0eb7a34b20872596baf62fa6d15c88b94befe0a
+          overthrow-frame-3.webp eb1a014df7cdff0bbefb0a04aa5e245f2175e005
+          overthrow-game-boss.webp 506b17fa49197d005bae01aaee9350140393d617
+          overthrow-poster.webp 9b169432f26b318e97eb8fc3d8d551c4a78473b7
+          rex-resume.doc 1d74437c1d4e020d863a6351bdbb1a413dddfddb
+          storm-citadel.webp 892b8418d5b22c666998cb88f4cca5eead41cc3b
+          storm-door-open.webp 06e29c284bd1e2293aca2f54b2dfc3aa083b0ad2
+          storm-door-prompt.webp 5dee90bc44c117f901bf4318804cc94cac42519a
+          storm-key-pickup.webp e3e80e845cb5cbe49c24dbcc2668021dc3259640
+          storm-lift-down.webp 797b6bdbdaabc1191de567a897a7dddceebe8363
+          storm-lift-up.webp 7c94ad3f76ce603d154ba447a8aacb0fea430ca7
+          storm-rampart.webp cbe8d78fd0ea83fd6cfedd5060269f99312be1ee
+          storm-torch-lock.webp 608f6023aa3fdab500225f3c9b4e15ce4410f5b3
+          stormveil-cover.webp bad6626a8d600384e42bca52ea89c1852d144e52
+          stormveil-flow.png 15b3ce686d03cc16665dd7119f6f0d11ccbbe9ad
+          stormveil-flow.webp d70e8ad048cc7bdc59ddd9e8f1236dde41c23b2a
+          stormveil-overview.webp c19c9459b750eea54fe29443f56f4f96b21e4618
+          stormveil-side.webp 7f0cc96da04f69bf834ffc5af3abb105bdfddfb5
+          """.strip().splitlines())
+
+          def blob(data):
+              return sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+
+          def copy(item):
+              filename, expected = item
+              target = Path('docs/assets') / filename
+              if target.exists():
+                  if blob(target.read_bytes()) != expected:
+                      raise ValueError(f'Existing file differs: {filename}')
+                  return
+              for attempt in range(3):
+                  try:
+                      with urlopen(Request(source + filename, headers={'User-Agent': 'Rex-Portfolio-Publication'}), timeout=60) as response:
+                          data = response.read()
+                      if blob(data) != expected:
+                          raise ValueError(f'Original differs: {filename}')
+                      target.write_bytes(data)
+                      print(f'Verified {filename}', flush=True)
+                      return
+                  except Exception:
+                      if attempt == 2:
+                          raise
+                      sleep(2 * (attempt + 1))
+
+          with ThreadPoolExecutor(max_workers=6) as workers:
+              list(workers.map(copy, manifest.items()))
+
+      - name: Publish verified media
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- docs/assets
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish verified project media and documents"
+            git push origin HEAD:main
+          fi
+
